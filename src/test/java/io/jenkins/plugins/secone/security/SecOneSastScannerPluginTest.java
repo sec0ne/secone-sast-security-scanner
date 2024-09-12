@@ -70,7 +70,6 @@ public class SecOneSastScannerPluginTest {
 	private Jenkins jenkins;
 	@Mock
 	private HttpEntity httpEntity;
-
 	@Mock
 	private HttpEntity statusHttpEntity;
 	@Mock

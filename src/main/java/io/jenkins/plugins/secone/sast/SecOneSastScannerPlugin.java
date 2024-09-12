@@ -84,11 +84,14 @@ public class SecOneSastScannerPlugin extends Builder implements SimpleBuildStep 
 
 	private boolean printInAnsiColor;
 
-	private final ObjectFactory objectFactory;
+	private ObjectFactory objectFactory;
 
 	@DataBoundConstructor
 	public SecOneSastScannerPlugin(String apiCredentialsId, ObjectFactory objectFactory) {
 		this.apiCredentialsId = apiCredentialsId;
+		if (objectFactory == null) {
+			objectFactory = new ObjectFactory();
+		}
 		this.objectFactory = objectFactory;
 	}
 
@@ -135,6 +138,9 @@ public class SecOneSastScannerPlugin extends Builder implements SimpleBuildStep 
 		if (threshold != null) {
 			applyThreshold = true;
 		}
+		if (objectFactory == null) {
+			objectFactory = new ObjectFactory();
+		}
 		printInAnsiColor = isAnsiColorPluginInstalled(build.getParent());
 		EnvVars envVars = build.getEnvironment(listener);
 
@@ -170,6 +176,10 @@ public class SecOneSastScannerPlugin extends Builder implements SimpleBuildStep 
 			throws InterruptedException, IOException {
 
 		printInAnsiColor = isAnsiColorPluginInstalled(run.getParent());
+
+		if (objectFactory == null) {
+			objectFactory = new ObjectFactory();
+		}
 
 		if (StringUtils.isBlank(actionOnThresholdBreached)) {
 			printLogs(listener.getLogger(), "actionOnThresholdBreached is not set. Default action is fail.", "g");
