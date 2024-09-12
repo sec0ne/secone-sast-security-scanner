@@ -1,0 +1,54 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:c="/lib/credentials">
+
+	<f:entry>
+		<b>This plugin integrates Secone SAST (Static Application Security Testing) security scanner with Jenkins, allowing you to perform security scans as part of your CI/CD pipeline.</b>
+	</f:entry>
+	<f:entry title="Credentials Id" field="apiCredentialsId">
+        <f:textbox />
+    </f:entry>
+    <f:optionalBlock title="${%thresholdTitle}" field="threshold" checked="${instance.threshold != null}">
+        <f:block>
+            <table style="padding-left:2%; width:100%;">
+                <tr>
+                    <td>
+                        <f:entry title="${%criticalThresholdTitle}" field="criticalThreshold"> 
+                            <f:textbox default="0" value="${instance.threshold.criticalThreshold}"/>
+                        </f:entry>
+                    </td>
+                    <td>
+                        <f:entry title="${%highThresholdTitle}" field="highThreshold">
+                            <f:textbox default="10" value="${instance.threshold.highThreshold}"/>
+                        </f:entry>
+                    </td>
+                    <td>
+                        <f:entry title="${%mediumThresholdTitle}" field="mediumThreshold">
+                            <f:textbox default="" value="${instance.threshold.mediumThreshold}"/>
+                        </f:entry>
+                    </td>
+                    <td>
+                        <f:entry title="${%lowThresholdTitle}" field="lowThreshold">
+                            <f:textbox default="" value="${instance.threshold.lowThreshold}"/>
+                        </f:entry>
+                    </td>
+                </tr>
+                <tr>
+                	<td colspan="4">
+                		On threshold breached, mark the <b>Build Status</b> as  
+                	</td>
+                </tr>
+                <tr>
+                	<td>	
+                		<f:radio name="statusAction" field="statusAction" title="Fail" checked="${instance.threshold.statusAction == 'fail' || !instance.threshold.statusAction}" value="fail"/>
+                	</td>
+                 	<td> 	
+                 		<f:radio name="statusAction" field="statusAction" title="Unstable" checked="${instance.threshold.statusAction == 'unstable'}" value="unstable"/>
+                	</td>                 	
+                	<td>  	
+                		<f:radio name="statusAction" field="statusAction" title="Continue" checked="${instance.threshold.statusAction == 'continue'}" value="continue"/>
+                	</td>      	
+                </tr>
+            </table>
+        </f:block>
+    </f:optionalBlock>
+</j:jelly>

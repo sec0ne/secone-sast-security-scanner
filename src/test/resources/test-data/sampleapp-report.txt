@@ -1,0 +1,15 @@
+[{
+  "critical": 1,
+  "high": 0,
+  "medium": 1,
+  "low": 8,
+  "scanStatus": "COMPLETED",
+  "reportId": "123556-6bc7-4b56-bc28-asr454wfg5",
+  "scanDateTime": "2024-09-12T04:31:29.872Z",
+  "assetUrl": "https://github.com/MOCK-Test/sampleapp",
+  "total": 10,
+  "assetType": "",
+  "source": "jenkins",
+  "branch": "",
+  "errorMessage": ""
+}]

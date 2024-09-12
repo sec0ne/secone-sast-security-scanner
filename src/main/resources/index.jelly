@@ -1,0 +1,4 @@
+<?jelly escape-by-default='true'?>
+<div>
+This plugin integrates Secone SAST (Static Application Security Testing) security scanner with Jenkins, allowing you to perform security scans as part of your CI/CD pipeline.
+</div>
